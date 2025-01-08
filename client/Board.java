@@ -10,23 +10,31 @@ public class Board {
     private String sfondoBianco = "\033[48;5;8m";
 
     private void generaUnicode(){
-        chessUnicode= new HashMap<String, String>();
-        chessUnicode.put("r","♖");
-        chessUnicode.put("R","♜");
-        chessUnicode.put("p","♙");
-        chessUnicode.put("P","♟");
-        chessUnicode.put("k","♔");
-        chessUnicode.put("K","♚");
-        chessUnicode.put("q","♕");
-        chessUnicode.put("Q","♛");
-        chessUnicode.put("n","♘");
-        chessUnicode.put("N","♞");
-        chessUnicode.put("b","♗");
-        chessUnicode.put("B","♝");
-        for (int i = 1; i <= 8; i++){
-            chessUnicode.put(Integer.toString(i),String.join("", Collections.nCopies(i, " ")));
+        chessUnicode = new HashMap<>();
+        chessUnicode.put("r", "♖");
+        chessUnicode.put("R", "♜");
+        chessUnicode.put("p", "♙");
+        chessUnicode.put("P", "♟");
+        chessUnicode.put("k", "♔");
+        chessUnicode.put("K", "♚");
+        chessUnicode.put("q", "♕");
+        chessUnicode.put("Q", "♛");
+        chessUnicode.put("n", "♘");
+        chessUnicode.put("N", "♞");
+        chessUnicode.put("b", "♗");
+        chessUnicode.put("B", "♝");
+        
+        // Empty squares
+        for (int i = 1; i <= 8; i++) {
+            chessUnicode.put(Integer.toString(i), String.join("", Collections.nCopies(i, " ")));
         }
-        chessUnicode.put("/","\n");
+        
+        // Row separator
+        chessUnicode.put("/", "\n");
+        
+        // Additional FEN characters (if applicable, like castling and en passant)
+        chessUnicode.put("-", " ");  // No castling
+        chessUnicode.put(" ", " "); // Placeholder for extra FEN fields
     }
 
     public Board(){
@@ -67,5 +75,9 @@ public class Board {
             }
         }
         return S;
+    }
+
+    public void setFen(String fen){
+        this.fen = fen;
     }
 }
