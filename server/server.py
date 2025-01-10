@@ -1,46 +1,51 @@
 import socket
-import threading
-import chess  # python-chess library for game logic
+import chess
+import random
 
 class ChessServer:
-    def __init__(self, host='127.0.0.1', port=65432):
+    def __init__(self):
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server.bind((host, port))
-        self.server.listen(5)
-        self.clients = []
+        self.server.bind(('127.0.0.1', 12345))
+        self.server.listen(1)
         self.board = chess.Board()
 
-    def handle_client(self, client_socket):
+    def handleClient(self, clientSocket):
         try:
-            client_socket.send(str(self.board).encode('utf-8'))
+            clientSocket.send((self.board.fen() + "\n").encode('utf-8'))
+            print(f"Sent FEN: {self.board.fen()}")
+
             while not self.board.is_game_over():
-                move = client_socket.recv(1024).decode('utf-8').strip()
-                if self.is_valid_move(move):
+                # riceve
+                move = clientSocket.recv(1024).decode('utf-8').strip()
+                print(f"Move received: {move}")
+                # invia
+                if self.isValid(move):
+                    # player
                     self.board.push(chess.Move.from_uci(move))
-                    client_socket.send(str(self.board).encode('utf-8'))
+                    # pc
+                    self.board.push(random.choice(list(self.board.legal_moves)))
+                    clientSocket.send((self.board.fen() + "\n").encode('utf-8'))
+                    print(f"Sent FEN: {self.board.fen()}")
                 else:
-                    client_socket.send(b"Invalid move. Try again.\n")
-            client_socket.send(b"Game over!\n")
+                    clientSocket.send(b"Invalid move. Try again.\n")
+            # game over
+            result = self.board.result()
+            clientSocket.send((f"Game over! Result: {result}\n").encode('utf-8'))
+
         except ConnectionError:
             print("Client disconnected.")
         finally:
-            client_socket.close()
+            clientSocket.close()
 
-    def is_valid_move(self, move):
-        try:
-            return chess.Move.from_uci(move) in self.board.legal_moves
-        except ValueError:
-            return False
+    def isValid(self, move):
+        return chess.Move.from_uci(move) in self.board.legal_moves
 
     def start(self):
         print("Chess server started...")
-        while True:
-            client_socket, addr = self.server.accept()
-            print(f"Connection from {addr}")
-            self.clients.append(client_socket)
-            client_thread = threading.Thread(target=self.handle_client, args=(client_socket,))
-            client_thread.start()
+        clientSocket, address = self.server.accept()
+        print(f"Connected")
+        self.handleClient(clientSocket)
 
 if __name__ == "__main__":
-    server = ChessServer()
-    server.start()
+    chessServer = ChessServer()
+    chessServer.start()

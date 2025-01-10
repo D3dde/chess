@@ -9,7 +9,7 @@ public class Board {
     private String sfondoNero = "\033[48;5;0m";
     private String sfondoBianco = "\033[48;5;8m";
 
-    private void generaUnicode(){
+    private void genUnicode(){
         chessUnicode = new HashMap<>();
         chessUnicode.put("r", "♖");
         chessUnicode.put("R", "♜");
@@ -24,27 +24,25 @@ public class Board {
         chessUnicode.put("b", "♗");
         chessUnicode.put("B", "♝");
         
-        // Empty squares
         for (int i = 1; i <= 8; i++) {
             chessUnicode.put(Integer.toString(i), String.join("", Collections.nCopies(i, " ")));
         }
         
-        // Row separator
         chessUnicode.put("/", "\n");
-        
-        // Additional FEN characters (if applicable, like castling and en passant)
-        chessUnicode.put("-", " ");  // No castling
-        chessUnicode.put(" ", " "); // Placeholder for extra FEN fields
     }
 
     public Board(){
-         generaUnicode();
+         genUnicode();
          fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
     }
 
     public Board(String fen){
-        generaUnicode();
-        this.fen = fen;
+        genUnicode();
+        this.fen = removeUselessInfo(fen);
+    }
+
+    private String removeUselessInfo(String fen) {
+        return fen.split(" ")[0];
     }
 
     public String toString(){
@@ -55,29 +53,30 @@ public class Board {
             String piece = chessUnicode.get(""+fen.charAt(i));
 
             for (int j = 0; j<piece.length() ; j++){
+
                 // colore sfondo
                 if ((riga  + colonna) % 2 == 0){
                     S+=sfondoNero;
                 }else{
                     S+=sfondoBianco;
                 }
+
                 // piazza il pezzo
                 if (piece.charAt(j)!='\n'){
-                    S+=" ";
-                    S+=piece.charAt(j)+" ";
+                    S+=" "+piece.charAt(j)+" ";
                     colonna++;
                 }else{
-                    S+=sfondoNero;
                     riga++;
                     colonna = 0;
-                    S+="\n";
+                    S+="\033[49m\n"; //backround trasparente + a capo
                 }
             }
         }
+        S+="\033[49m";
         return S;
     }
 
     public void setFen(String fen){
-        this.fen = fen;
+        this.fen = removeUselessInfo(fen);
     }
 }
