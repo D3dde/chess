@@ -25,7 +25,7 @@ public class Board {
         chessUnicode.put("B", "♝");
         
         for (int i = 1; i <= 8; i++) {
-            chessUnicode.put(Integer.toString(i), String.join("", Collections.nCopies(i, " ")));
+            chessUnicode.put(Integer.toString(i), String.join("", Collections.nCopies(i, " ")));
         }
         
         chessUnicode.put("/", "\n");
