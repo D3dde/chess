@@ -54,6 +54,10 @@ public class Board {
 
             for (int j = 0; j<piece.length() ; j++){
 
+                if (colonna == 0){
+                    S+=" "+(8-riga)+" ";
+                }
+
                 // colore sfondo
                 if ((riga  + colonna) % 2 == 0){
                     S+=sfondoNero;
@@ -73,6 +77,7 @@ public class Board {
             }
         }
         S+="\033[49m";
+        S+="\n -  A  B  C  D  E  F  G  H";
         return S;
     }
 

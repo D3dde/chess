@@ -9,15 +9,11 @@ class ChessServer:
         self.server.bind((host, port))
         self.server.listen(1)
         self.board = chess.Board()
-        self.lock = threading.Lock()  # Ensures synchronization on the board
+        self.lock = threading.Lock()
 
     def handleClient(self, clientSocket):
         try:
-            # Send initial board state to the client
-            clientSocket.send((self.board.fen() + "\n").encode('utf-8'))
-            print(f"Sent FEN: {self.board.fen()}")
 
-            # Player and computer threads
             player_thread = threading.Thread(target=self.handlePlayer, args=(clientSocket,))
             computer_thread = threading.Thread(target=self.handleComputer, args=(clientSocket,))
 
@@ -25,7 +21,6 @@ class ChessServer:
             player_thread.start()
             computer_thread.start()
 
-            # Wait for both threads to finish
             player_thread.join()
             computer_thread.join()
 
@@ -40,22 +35,24 @@ class ChessServer:
                 move = clientSocket.recv(1024).decode('utf-8').strip()
                 print(f"Move received: {move}")
 
-                with self.lock:  # Synchronize board access
+                with self.lock:
                     if self.isValid(move):
                         self.board.push(chess.Move.from_uci(move))
                         print(f"Player move applied: {move}")
             except Exception as e:
                 print(f"Error in player thread: {e}")
                 break
+        clientSocket.send("Game over".encode('utf-8'))
 
     def handleComputer(self, clientSocket):
         while not self.board.is_game_over():
-            with self.lock:  # Synchronize board access
-                if not self.board.turn:  # It's computer's turn
+            with self.lock:
+                if not self.board.turn:
                     move = random.choice(list(self.board.legal_moves))
                     self.board.push(move)
                     print(f"Computer move applied: {move}")
                     clientSocket.send((self.board.fen() + "\n").encode('utf-8'))
+        clientSocket.send("Game over".encode('utf-8'))
 
     def isValid(self, move):
         try:

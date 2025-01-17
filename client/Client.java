@@ -16,13 +16,12 @@ public class Client {
             Socket socket = new Socket(HOST, PORT);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
+            String fen;
 
-            String fen = in.readLine();
-            board.setFen(fen);
 
             while (true) {
                 System.out.println(board);
-                System.out.print("Enter your move (es e2e4): ");
+                System.out.print("Enter your move: ");
                 String move = scanner.nextLine();
                 // invia
                 out.println(move);
@@ -34,9 +33,7 @@ public class Client {
                 }
             
 
-                if (response.contains("Invalid move")) {
-                    System.out.println(response);
-                } else if (response.contains("Game over")) {
+                if (response.contains("Game over")) {
                     System.out.println(response);
                     break;
                 } else {
