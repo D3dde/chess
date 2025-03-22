@@ -1,0 +1,141 @@
+@font-face {
+    font-family: "Caskaydia";
+    src: url("./font/CaskaydiaCoveNerdFont-Regular.ttf") format("truetype");
+
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body{
+    font-family: "Caskaydia";
+    background-color: #212121;
+    color:white;
+}
+
+#header{
+    background-color: #1E1E1E;
+    padding-bottom: 50px
+}
+
+#body{
+
+    height:600px;
+}
+
+#footer{
+    background-image: url("./img/footer.svg");
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#dark-mode{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+
+    float:right;
+    font-family: "Caskaydia";
+
+    background: none;
+    border: none;
+    
+    color: white;
+    font-size: 25px;
+}
+
+#repo{
+    font-size: 30px;
+    color:white;
+    text-decoration: none;
+}
+
+#repo:hover,
+#repo:active{
+    color:#1C3E36;
+}
+
+#mode{
+    padding-top: 200px;
+    padding-bottom: 100px;
+    margin:auto;
+    background-color: #212121;
+
+    display: grid;
+    grid-template-rows: auto auto auto;
+    width: 400px;
+}
+.row{
+    display: flex;    
+}
+
+#singleplayer button,
+#multiplayer button,
+#leaderboard button{
+    width: 100%;
+}
+
+#multiplayer input{
+    width: 30%;
+}
+
+
+#singleplayer button,
+#multiplayer button,
+#leaderboard button,
+#multiplayer input {
+    outline: none;
+    margin:5px;
+    background-color: #0E8B6E;
+    border-radius: 20px;
+    box-shadow: rgba(28, 62, 54, 0.4) 0 -20px 18px -14px inset,
+               rgba(28, 62, 54, 0.3) 0 2px 4px,
+               rgba(28, 62, 54, 0.2) 0 4px 8px,
+               rgba(28, 62, 54, 0.1) 0 8px 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    border: 2px solid transparent;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
+}
+  
+#singleplayer button:hover,
+#multiplayer button:hover,
+#leaderboard button:hover,
+#multiplayer input:hover {
+    background-color: #0c7a5f;
+    box-shadow: rgba(28, 62, 54, 0.5) 0 -20px 18px -14px inset,
+               rgba(28, 62, 54, 0.4) 0 4px 8px,
+               rgba(28, 62, 54, 0.3) 0 8px 16px,
+               rgba(28, 62, 54, 0.2) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+    border-color: #1C3E36;
+}
+  
+#singleplayer button:active,
+#multiplayer button:active,
+#leaderboard button:active,
+#multiplayer input:active {
+    transform: scale(0.95) rotate(0deg);
+    background-color: #0b6a53;
+}

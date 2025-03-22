@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./style.css">
+    <script src="script.js"></script>
+    
+    <title>D3dde's chess</title>
+</head>
+<body>
+    <header id="header">
+        <button id="dark-mode" onclick="debug()">&#xf4ee</button>
+    </header>
+    <div id="body">
+        <div id="mode">
+            <div class="row" id="singleplayer">
+                <button>singleplayer</button>
+            </div>
+            <div class="row" id="multiplayer">
+                <button>multiplayer</button><input type="text" placeholder="room">
+            </div>
+            <div class="row" id="leaderboard">
+                <button>leaderboard</button>
+            </div>
+        </div>     
+    </div>
+    <footer id="footer">
+        <p>D3dde's chess <a id="repo" href="https://github.com/D3dde/chess">&#xe709</a></p>
+    </footer>
+</body>
+</html>
