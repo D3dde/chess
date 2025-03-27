@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="./style.css">
-    <script src="script.js"></script>
-    
+
     <title>D3dde's chess</title>
 </head>
-<body>
+<body class="dark-mode">
     <header id="header">
-        <button id="dark-mode" onclick="debug()">&#xf4ee</button>
+        <a id="homepage" href="./index.html">&#xe709</a>
+        <h1 id="title">D3dde's chess</h1>
+        <button id="theme-toggle" onclick="toggleDarkLight(this)">&#xf4ee</button>
     </header>
-    <div id="body">
-        <div id="mode">
+    <div id="content">
+        <div id="grid">
+            <div class="row" id="username">
+                <input id="username" class="text" type="text" placeholder="username" maxlength="16">
+            </div>
             <div class="row" id="singleplayer">
-                <button>singleplayer</button>
+                <button onclick="mode(0)" class="button">singleplayer</button>
             </div>
             <div class="row" id="multiplayer">
-                <button>multiplayer</button><input type="text" placeholder="room">
+                <button onclick="mode(1)" class="button">multiplayer</button><input id="room" class="text" type="text" placeholder="room" maxlength="4">
             </div>
             <div class="row" id="leaderboard">
-                <button>leaderboard</button>
+                <button onclick="mode(2)" class="button">leaderboard</button>
             </div>
-        </div>     
+        </div>
     </div>
     <footer id="footer">
         <p>D3dde's chess <a id="repo" href="https://github.com/D3dde/chess">&#xe709</a></p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
