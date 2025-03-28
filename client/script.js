@@ -3,11 +3,11 @@ if (localStorage.getItem("theme") == "light-mode") {
 }
 
 function debug() {
-  window.alert("it works");
+  window.alert("LOG | it works");
 }
 
 function debug(x) {
-  window.alert(x);
+  window.alert("LOG | "+x);
 }
 
 function mode(mode) {

@@ -83,22 +83,22 @@ body.light-mode {
 
     font-size: 25px;
 }
-.light-mode #theme-toggle {
-    color: black;
-}
 .dark-mode #theme-toggle {
     color: white;
+}
+.light-mode #theme-toggle {
+    color: black;
 }
 
 #repo {
     font-size: 30px;
     text-decoration: none;
 }
-.light-mode #repo {
-    color: black;
-}
 .dark-mode #repo {
     color: white;
+}
+.light-mode #repo {
+    color: black;
 }
 
 .dark-mode #repo:hover,
@@ -147,8 +147,7 @@ button {
     overflow: hidden;
 }
 
-.dark-mode .button,
-.dark-mode .text {
+.dark-mode .button {
     background-color: #0e8b6e;
     box-shadow:
         rgba(28, 62, 54, 0.4) 0 -20px 18px -14px inset,
@@ -158,8 +157,7 @@ button {
     color: #ffffff;
 }
 
-.light-mode .button,
-.light-mode .text {
+.light-mode .button {
     background-color: #6de9cd;
     box-shadow:
         rgba(109, 233, 205, 0.3) 0 -15px 12px -10px inset,
@@ -168,12 +166,14 @@ button {
     color: #000000;
 }
 
+.text::placeholder{
+    opacity: 0.7;
+}
 .dark-mode .text::placeholder {
     color: white;
 }
 .light-mode .text::placeholder {
     color: black;
-    opacity: 1;
 }
 
 .button:hover,
@@ -181,8 +181,7 @@ button {
     transform: scale(1.05) rotate(-1deg);
 }
 
-.dark-mode .button:hover,
-.dark-mode .text:over {
+.dark-mode .button:hover {
     background-color: #0c7a5f;
     box-shadow:
         rgba(28, 62, 54, 0.5) 0 -20px 18px -14px inset,
@@ -192,8 +191,7 @@ button {
     border-color: #1c3e36;
 }
 
-.light-mode .button:hover,
-.light-mode .text:hover {
+.light-mode .button:hover {
     background-color: #5cd0b6;
     box-shadow:
         rgba(109, 233, 205, 0.4) 0 -15px 12px -10px inset,
@@ -207,6 +205,17 @@ button {
     transform: scale(0.95) rotate(0deg);
     background-color: #0b6a53;
 }
+
+.dark-mode .text{
+    background-color: rgba(109, 233, 205, 0.15); 
+    color: #FFFFFF;
+}
+.light-mode .text{
+    background-color: rgba(109, 233, 205, 0.4);
+    color: #000000;
+}
+
+
 
 #multiplayer input {
     width: 30%;
