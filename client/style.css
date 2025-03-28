@@ -16,11 +16,11 @@ body.dark-mode {
     background-color: #212121;
     color: white;
 }
-
 body.light-mode {
     background-color: white;
     color: black;
 }
+
 
 #header {
     box-sizing: border-box;
@@ -214,8 +214,6 @@ button {
     background-color: rgba(109, 233, 205, 0.4);
     color: #000000;
 }
-
-
 
 #multiplayer input {
     width: 30%;
