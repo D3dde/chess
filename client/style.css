@@ -21,7 +21,6 @@ body.light-mode {
     color: black;
 }
 
-
 #header {
     box-sizing: border-box;
     width: 100%;
@@ -88,6 +87,10 @@ body.light-mode {
 }
 .light-mode #theme-toggle {
     color: black;
+}
+#theme-toggle:hover,
+#theme-toggle:active {
+    color: #0e8b6e;
 }
 
 #repo {
@@ -166,7 +169,7 @@ button {
     color: #000000;
 }
 
-.text::placeholder{
+.text::placeholder {
     opacity: 0.7;
 }
 .dark-mode .text::placeholder {
@@ -206,15 +209,107 @@ button {
     background-color: #0b6a53;
 }
 
-.dark-mode .text{
-    background-color: rgba(109, 233, 205, 0.15); 
-    color: #FFFFFF;
+.dark-mode .text {
+    background-color: rgba(109, 233, 205, 0.15);
+    color: #ffffff;
 }
-.light-mode .text{
+.light-mode .text {
     background-color: rgba(109, 233, 205, 0.4);
     color: #000000;
 }
 
 #multiplayer input {
     width: 30%;
+}
+
+/*          */
+
+.chessboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-with-ranks {
+    display: flex;
+    align-items: center;
+}
+
+.coordinate-labels {
+    display: flex;
+    font-weight: bold;
+}
+
+.dark-mode .coordinate-labels {
+    color: #ffffff;
+}
+
+.light-mode .coordinate-labels {
+    color: #000000;
+}
+
+.files-labels {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 480px;
+    margin-left: 30px;
+    padding: 5px 0;
+}
+
+.ranks-labels {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 480px;
+    padding-right: 10px;
+}
+
+#chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 60px);
+    grid-template-rows: repeat(8, 60px);
+    width: 480px;
+    height: 480px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.dark-mode #chessboard {
+    border: 10px solid #1c3e36;
+}
+
+.light-mode #chessboard {
+    border: 10px solid #6de9cd;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 40px;
+    cursor: pointer;
+    border: none;
+}
+
+.dark-mode .square.light {
+    background-color: #0e8a6e;
+}
+.light-mode .square.light {
+    background-color: #b5f4e5;
+}
+
+.dark-mode .square.dark {
+    background-color: #1c3e36;
+}
+
+.light-mode .square.dark {
+    background-color: #6de9cd;
+}
+
+.black-piece {
+    color: #000000;
+}
+
+.white-piece {
+    color: #ffffff;
 }

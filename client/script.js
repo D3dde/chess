@@ -2,24 +2,23 @@ if (localStorage.getItem("theme") == "light-mode") {
   toggleDarkLight(document.getElementById("theme-toggle"));
 }
 
-function debug() {
-  window.alert("LOG | it works");
-}
-
 function debug(x) {
-  window.alert("LOG | "+x);
+  console.log("LOG | " + x);
 }
 
 function mode(mode) {
   switch (mode) {
     case 0:
       console.log("LOG | singleplayer");
+      window.location.href = "./game.html";
       break;
     case 1:
       console.log("LOG | multiplayer");
+      window.location.href = "./game.html";
       break;
     case 2:
       console.log("LOG | leaderboard");
+      window.location.href = "leaderboard.html";
       break;
   }
 }
