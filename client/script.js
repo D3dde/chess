@@ -37,22 +37,18 @@ function toggleDarkLight(self) {
   }
 }
 
-function updateChessboardFromFEN( fen) {
-  if (!fen) {
-    console.error('LOG | there is no fen');
-    return;
-  }
-  chessboardNode = document.getElementById("chessboard")
-  // Pulisci tutte le caselle dalla scacchiera
-  const squares = chessboardNode.querySelectorAll('.square');
-  squares.forEach(square => {
+function updateChessboardFromFEN(fen) {
+  console.log('LOG | updating chessboard');
+
+  chessboard = document.getElementById("chessboard")
+ 
+  const squares = chessboard.querySelectorAll('.square');
+  for(const square in squares){
     square.innerHTML = '';
-  });
+  }
   
-  // Ottieni solo la parte della posizione della notazione FEN (prima di eventuali spazi)
   const positionPart = fen.split(' ')[0];
   
-  // Mappa dei pezzi FEN ai simboli Unicode
   const pieceMap = {
     'r': '<span class="black-piece">♜</span>',
     'n': '<span class="black-piece">♞</span>',
@@ -67,34 +63,28 @@ function updateChessboardFromFEN( fen) {
     'K': '<span class="white-piece">♚</span>',
     'P': '<span class="white-piece">♟</span>'
   };
-  
-  // Converte la notazione FEN in una matrice di pezzi
+
   const rows = positionPart.split('/');
   
-  // Cicla attraverso le righe
   for (let i = 0; i < 8; i++) {
-    let row = rows[i];
-    let col = 0;
+    let col = 0; 
     
-    // Cicla attraverso i caratteri di ogni riga
-    for (let j = 0; j < row.length; j++) {
-      const char = row.charAt(j);
+    for (let j = 0; j < rows[i].length; j++) {
+      const char = rows[i].charAt(j);
       
-      // Se è un numero, salta quel numero di caselle
-      if (!isNaN(char)) {
-        col += parseInt(char, 10);
-      } else {
-        // Altrimenti posiziona il pezzo
+      if (isNaN(char)) {
         const file = String.fromCharCode(97 + col); // 'a' + offset
         const rank = 8 - i; // Le righe FEN vanno dall'alto verso il basso
         const squareId = `${file}${rank}`;
-        const square = chessboardNode.querySelector(`#${squareId}`);
+        const square = chessboard.querySelector(`#${squareId}`);
         
         if (square) {
           square.innerHTML = pieceMap[char] || '';
         }
         
         col++;
+      } else {
+        col += parseInt(char, 10);
       }
     }
   }
