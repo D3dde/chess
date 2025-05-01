@@ -332,3 +332,11 @@ button {
     gap: 20px;
     margin: 20px;
 }
+
+.dark-mode .square.selected {
+    background-color: #ffd700;
+}
+
+.light-mode .square.selected {
+    background-color: #fdfd96;
+}
