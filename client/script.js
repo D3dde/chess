@@ -11,7 +11,6 @@ function mode(mode) {
     case 0:
       console.log("LOG | singleplayer");
       window.location.href = "./game.html";
-      startGame();
       break;
     case 1:
       console.log("LOG | multiplayer");
@@ -129,10 +128,14 @@ function startGame() {
   };
 
   socket.onmessage = function (event) {
-    const data = JSON.parse(event.data);
+    try{
+      const data = JSON.parse(event.data);
     console.log("LOG | data received: " + data);
-    if (data[command] == "fen") {
-      updateChessboardFromFEN(data[value]);
+    if (data.command == "fen") {
+      updateChessboardFromFEN(data.value);
+    }
+    } catch (err) {
+      console.error(err)
     }
   };
 
@@ -142,9 +145,9 @@ function startGame() {
 }
 
 function sendMessage(message) {
-  if (true) {
+  if (socket && socket.readyState === WebSocket.OPEN) {
     socket.send(message);
   } else {
-    console.log("LOG | Unable to send message");
+    console.warn("LOG | Cannot send message: WebSocket not connected");
   }
 }
