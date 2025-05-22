@@ -63,6 +63,7 @@ async def handle_connection(websocket):
 
                     # game over check
                     if game.is_game_over():
+                        print("Game ended")
                         await send_json(websocket,{"command": "gameover","value": game.result()})
 
             except json.JSONDecodeError:
