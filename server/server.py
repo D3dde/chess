@@ -1,4 +1,3 @@
-
 import asyncio
 import websockets
 import json
@@ -6,7 +5,7 @@ import threading
 import random
 import chess
 
-# Chess game state
+# Chess Game
 class ChessGame:
     def __init__(self):
         self.board = chess.Board()
@@ -44,7 +43,7 @@ class ChessGame:
 
 
 async def handle_connection(websocket):
-    print(f"Client connected : {websocket.remote_address[0]}")
+    print(f"Client connected : ip {websocket.remote_address[0]}")
     # new game
     game = ChessGame()
     try:
@@ -70,7 +69,9 @@ async def handle_connection(websocket):
                 print("Invalid JSON received")
 
     except websockets.exceptions.ConnectionClosed:
-        print("Client disconnected")
+        print("Client disconnected abnormally")
+    finally:
+        print("Client disconnected normally")
 
 async def send_json(websocket, data):
     json_string = json.dumps(data)

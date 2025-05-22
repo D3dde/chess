@@ -122,6 +122,7 @@ let socket;
 
 function startGame() {
   socket = new WebSocket("ws://localhost:8888");
+  startClock()
 
   socket.onopen = function (event) {
     console.log("LOG | socket connected");
@@ -130,10 +131,12 @@ function startGame() {
   socket.onmessage = function (event) {
     try{
       const data = JSON.parse(event.data);
-    console.log("LOG | data received: " + data);
-    if (data.command == "fen") {
-      updateChessboardFromFEN(data.value);
-    }
+      console.log("LOG | data received: " + data.command);
+      if (data.command == "fen") {
+        updateChessboardFromFEN(data.value);
+      }else if(data.command == "gameover"){
+        Document.getElementById("game-status").innerHTML= data.value
+      }
     } catch (err) {
       console.error(err)
     }
@@ -142,6 +145,13 @@ function startGame() {
   socket.onerror = function (event) {
     console.error("LOG | WebSocket error:", event);
   };
+
+}
+
+function quit(){
+  console.log("LOG | quit");
+  socket.close();
+  window.location.href = "./index.html";
 }
 
 function sendMessage(message) {
@@ -150,4 +160,22 @@ function sendMessage(message) {
   } else {
     console.warn("LOG | Cannot send message: WebSocket not connected");
   }
+}
+
+
+function startClock(){
+  const timer = document.getElementById("timer");
+  let seconds = 0;
+  let minutes = 0;
+  setInterval(() => {
+          seconds++;
+          if (seconds === 60) {
+            seconds = 0;
+            minutes++;
+          }
+          if (minutes === 60) {
+            minutes = 0;
+          }
+          timer.innerHTML=minutes+':'+seconds;
+        }, 1000);
 }
