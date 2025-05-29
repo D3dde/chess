@@ -197,7 +197,6 @@ async def handle_multiplayer(websocket, room_id: str):
             
             # Check if this is the second player joining
             if len(game.players) == 2:
-                # Both players are now connected
                 await broadcast_to_room(game, {"command": "game_ready", "value": "Both players connected! Game starting..."})
             else:
                 # First player joined, waiting for second
