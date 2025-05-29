@@ -132,9 +132,9 @@ function updateChessboardFromFEN(fen) {
 
       if (isNaN(char)) {
         const file = String.fromCharCode(97 + col); // 'a' + offset
-        const rank = 8 - i; // FEN rows go from top to bottom
-        const squareId = `${file}${rank}`;
-        const square = chessboard.querySelector(`#${squareId}`);
+        const rank = 8 - i; // Le righe FEN vanno dall'alto verso il basso
+        const squareId = file+rank;
+        const square = chessboard.querySelector("#"+squareId);
 
         if (square) {
           square.innerHTML = pieceMap[char] || "";
