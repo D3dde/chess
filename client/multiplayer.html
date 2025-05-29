@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css">
+    <link type="image/png" sizes="96x96" rel="icon" href="img/icon.png">
+
+    <title>D3dde's chess - Multiplayer</title>
+</head>
+<body class="dark-mode">
+    <header id="header">
+        <a id="homepage" href="./index.html">&#xf094</a>
+        <h1 id="title">D3dde's chess - Multiplayer</h1>
+        <button id="theme-toggle" onclick="toggleDarkLight(this)">&#xf4ee</button>
+    </header>
+    <div id="content">
+        <div id="game-status">Connecting to room...</div>
+        <div class="chessboard-container">
+            <div class="coordinate-labels files-labels">
+                <div>a</div><div>b</div><div>c</div><div>d</div>
+                <div>e</div><div>f</div><div>g</div><div>h</div>
+            </div>
+
+            <div class="board-with-ranks">
+                <div class="coordinate-labels ranks-labels">
+                    <div>8</div><div>7</div><div>6</div><div>5</div><div>4</div><div>3</div><div>2</div><div>1</div>
+                </div>
+
+                <div id="chessboard">
+                    <button id="a8" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♜</span></button>
+                    <button id="b8" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♞</span></button>
+                    <button id="c8" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♝</span></button>
+                    <button id="d8" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♛</span></button>
+                    <button id="e8" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♚</span></button>
+                    <button id="f8" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♝</span></button>
+                    <button id="g8" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♞</span></button>
+                    <button id="h8" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♜</span></button>
+
+                    <button id="a7" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="b7" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="c7" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="d7" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="e7" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="f7" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="g7" class="square dark" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+                    <button id="h7" class="square light" onclick="handleSquareClick(this)"><span class="black-piece">♟</span></button>
+
+                    <button id="a6" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="b6" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="c6" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="d6" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="e6" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="f6" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="g6" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="h6" class="square dark" onclick="handleSquareClick(this)"></button>
+
+                    <button id="a5" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="b5" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="c5" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="d5" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="e5" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="f5" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="g5" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="h5" class="square light" onclick="handleSquareClick(this)"></button>
+
+                    <button id="a4" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="b4" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="c4" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="d4" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="e4" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="f4" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="g4" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="h4" class="square dark" onclick="handleSquareClick(this)"></button>
+
+                    <button id="a3" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="b3" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="c3" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="d3" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="e3" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="f3" class="square light" onclick="handleSquareClick(this)"></button>
+                    <button id="g3" class="square dark" onclick="handleSquareClick(this)"></button>
+                    <button id="h3" class="square light" onclick="handleSquareClick(this)"></button>
+
+                    <button id="a2" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="b2" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="c2" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="d2" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="e2" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="f2" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="g2" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+                    <button id="h2" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♟</span></button>
+
+                    <button id="a1" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♜</span></button>
+                    <button id="b1" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♞</span></button>
+                    <button id="c1" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♝</span></button>
+                    <button id="d1" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♛</span></button>
+                    <button id="e1" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♚</span></button>
+                    <button id="f1" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♝</span></button>
+                    <button id="g1" class="square dark" onclick="handleSquareClick(this)"><span class="white-piece">♞</span></button>
+                    <button id="h1" class="square light" onclick="handleSquareClick(this)"><span class="white-piece">♜</span></button>
+                </div>
+            </div>
+        </div>
+        <div id="game-controls">
+            <button class="button" onclick="quit()">Leave Room</button>
+            <div id="timer">0:00</div>
+            <div id="score">0 pts</div>
+            <div id="room-info">Room: <span id="room-display"></span></div>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>D3dde's chess <a id="repo" href="https://github.com/D3dde/chess">&#xe709</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.onload = () => {
+            // Display room ID
+            const roomId = localStorage.getItem("roomId") || "default";
+            const roomDisplay = document.getElementById("room-display");
+            if (roomDisplay) {
+                roomDisplay.textContent = roomId;
+            }
+            
+            // Start multiplayer game
+            multiplayer();
+        };
+    </script>
+</body>
+</html>
