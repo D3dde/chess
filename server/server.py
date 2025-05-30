@@ -140,8 +140,13 @@ class GameManager:
 
     def remove_empty_rooms(self):
         with self.lock:
-            empty_rooms = [room_id for room_id, game in self.rooms.items() 
-                          if len(game.players) == 0 and len(game.spectators) == 0]
+            empty_rooms = []
+            for room_id, game in self.rooms.items():
+                has_no_players = len(game.players) == 0
+                has_no_spectators = len(game.spectators) == 0
+                
+                if has_no_players and has_no_spectators:
+                    empty_rooms.append(room_id)
             for room_id in empty_rooms:
                 del self.rooms[room_id]
 
